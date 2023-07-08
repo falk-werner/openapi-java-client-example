@@ -217,7 +217,7 @@ For some reason, the only test existing is disabled.
 ### Enable test
 
 To enable the test, wich will run again the previously created
-test server, we have to change [GreeterApiTest.java](/home/user/src/openapi-java-client-example/java-client/src/test/java/org/example/greeter/GreeterApiTest.java).
+test server, we have to change [GreeterApiTest.java](java-client/src/test/java/org/example/greeter/GreeterApiTest.java).
 
 ```Java
 package org.example.greeter;
