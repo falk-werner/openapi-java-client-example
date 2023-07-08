@@ -134,7 +134,7 @@ do some magic!
 As you might notices, the server's reply is not quite what we wanted. Instead of the expected greeting `Hello, Bob!`, a generic placeholder `do some magic!` is returned.
 
 This is because the generator does only generate a server stub. We have to provide some same implementation. Thefore, we have to implement the
-`greet_get` function located in the [default_controller.py](test-server/openapi_server/controllers/default_controller.py) file.
+`greet_get` function located in the [greeter_controller.py](test-server/openapi_server/controllers/greeter_controller.py) file.
 
 ```Python
 def greet_get(whom="you"):  # noqa: E501
@@ -206,7 +206,7 @@ Starting a Gradle Daemon (subsequent builds will be faster)
 
 > Task :test
 
-DefaultApiTest > greetGetTest() SKIPPED
+GreeterApiTest > greetTest() SKIPPED
 
 BUILD SUCCESSFUL in 5s
 4 actionable tasks: 3 executed, 1 up-to-date
@@ -217,30 +217,23 @@ For some reason, the only test existing is disabled.
 ### Enable test
 
 To enable the test, wich will run again the previously created
-test server, we have to change [DefaultApiTest.java](/home/user/src/openapi-java-client-example/java-client/src/test/java/org/example/greeter/DefaultApiTest.java).
+test server, we have to change [GreeterApiTest.java](/home/user/src/openapi-java-client-example/java-client/src/test/java/org/example/greeter/GreeterApiTest.java).
 
 ```Java
 package org.example.greeter;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import org.example.ApiClient;
 import org.example.ApiException;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
- * API tests for DefaultApi
+ * API tests for GreeterApi
  */
-public class DefaultApiTest {
-
-    private final DefaultApi api = new DefaultApi();
+public class GreeterApiTest {
 
     /**
      * Greeting service.
@@ -248,22 +241,21 @@ public class DefaultApiTest {
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void greetGetTest() throws ApiException {
+    public void greetTest() throws ApiException {
         ApiClient client = new ApiClient();
         HashMap<String,String> variables = new HashMap<>();
         variables.put("host", "http://localhost:8080");
         client.setServerVariables(variables);
 
-        DefaultApi greeter = new DefaultApi(client);
+        GreeterApi greeter = new GreeterApi(client);
         
         String whom = "Bob";
-        String response = api.greetGet(whom);
+        String response = greeter.greet(whom);
 
         assertEquals("Hello, Bob!", response);
     }
 
-}
-```
+}```
 
 With this changes applied, the tests can be executed sucessfully:  
 _(Make sure, the test server is still running.)_
@@ -273,7 +265,7 @@ _(Make sure, the test server is still running.)_
 
 > Task :test
 
-DefaultApiTest > greetGetTest() PASSED
+GreeterApiTest > greetTest() PASSED
 
 BUILD SUCCESSFUL in 1s
 4 actionable tasks: 2 executed, 2 up-to-date

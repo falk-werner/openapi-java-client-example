@@ -13,25 +13,18 @@
 
 package org.example.greeter;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import org.example.ApiClient;
 import org.example.ApiException;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
- * API tests for DefaultApi
+ * API tests for GreeterApi
  */
-public class DefaultApiTest {
-
-    private final DefaultApi api = new DefaultApi();
+public class GreeterApiTest {
 
     /**
      * Greeting service.
@@ -39,16 +32,16 @@ public class DefaultApiTest {
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void greetGetTest() throws ApiException {
+    public void greetTest() throws ApiException {
         ApiClient client = new ApiClient();
         HashMap<String,String> variables = new HashMap<>();
         variables.put("host", "http://localhost:8080");
         client.setServerVariables(variables);
 
-        DefaultApi greeter = new DefaultApi(client);
+        GreeterApi greeter = new GreeterApi(client);
         
         String whom = "Bob";
-        String response = api.greetGet(whom);
+        String response = greeter.greet(whom);
 
         assertEquals("Hello, Bob!", response);
     }

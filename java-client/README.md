@@ -2,7 +2,7 @@
 
 Greeter
 - API version: 1.0.0
-  - Build date: 2023-07-08T17:59:46.354202+02:00[Europe/Berlin]
+  - Build date: 2023-07-08T22:41:47.299884+02:00[Europe/Berlin]
 
 This is an example of a simplistic OpenAPI document.
 
@@ -85,20 +85,20 @@ import org.example.ApiClient;
 import org.example.ApiException;
 import org.example.Configuration;
 import org.example.models.*;
-import org.example.greeter.DefaultApi;
+import org.example.greeter.GreeterApi;
 
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost:8080/greeter/v1");
 
-    DefaultApi apiInstance = new DefaultApi(defaultClient);
+    GreeterApi apiInstance = new GreeterApi(defaultClient);
     String whom = "Bob"; // String | Contains the name to greet.
     try {
-      String result = apiInstance.greetGet(whom);
+      String result = apiInstance.greet(whom);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling DefaultApi#greetGet");
+      System.err.println("Exception when calling GreeterApi#greet");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -115,7 +115,7 @@ All URIs are relative to *http://localhost:8080/greeter/v1*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*DefaultApi* | [**greetGet**](docs/DefaultApi.md#greetGet) | **GET** /greet | 
+*GreeterApi* | [**greet**](docs/GreeterApi.md#greet) | **GET** /greet | 
 
 
 ## Documentation for Models

@@ -20,7 +20,7 @@
         "description": "A generic server.",
         "variables": {
             "host": {
-                "default": "http//localhost:8080",
+                "default": "http://localhost:8080",
                 "description": "Protocol, hostname and port of the server."
             }
         }
@@ -31,6 +31,8 @@
         "/greet": {
             "get": {
                 "description": "Greeting service.",
+                "operationId": "greet",
+                "tags": ["greeter"],
                 "parameters": [{
                     "name": "whom",
                     "description": "Contains the name to greet.",

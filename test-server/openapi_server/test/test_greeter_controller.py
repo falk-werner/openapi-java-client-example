@@ -9,11 +9,11 @@ from six import BytesIO
 from openapi_server.test import BaseTestCase
 
 
-class TestDefaultController(BaseTestCase):
-    """DefaultController integration test stubs"""
+class TestGreeterController(BaseTestCase):
+    """GreeterController integration test stubs"""
 
-    def test_greet_get(self):
-        """Test case for greet_get
+    def test_greet(self):
+        """Test case for greet
 
         
         """

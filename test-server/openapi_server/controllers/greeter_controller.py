@@ -7,8 +7,8 @@ from typing import Union
 from openapi_server import util
 
 
-def greet_get(whom="you"):  # noqa: E501
-    """greet_get
+def greet(whom="you"):  # noqa: E501
+    """greet
 
     Greeting service. # noqa: E501
 

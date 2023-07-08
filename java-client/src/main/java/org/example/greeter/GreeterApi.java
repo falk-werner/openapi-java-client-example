@@ -35,16 +35,16 @@ import java.util.List;
 import java.util.Map;
 import javax.ws.rs.core.GenericType;
 
-public class DefaultApi {
+public class GreeterApi {
     private ApiClient localVarApiClient;
     private int localHostIndex;
     private String localCustomBaseUrl;
 
-    public DefaultApi() {
+    public GreeterApi() {
         this(Configuration.getDefaultApiClient());
     }
 
-    public DefaultApi(ApiClient apiClient) {
+    public GreeterApi(ApiClient apiClient) {
         this.localVarApiClient = apiClient;
     }
 
@@ -73,7 +73,7 @@ public class DefaultApi {
     }
 
     /**
-     * Build call for greetGet
+     * Build call for greet
      * @param whom Contains the name to greet. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -84,7 +84,7 @@ public class DefaultApi {
         <tr><td> 200 </td><td> Contains the greeting. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call greetGetCall(String whom, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call greetCall(String whom, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -133,8 +133,8 @@ public class DefaultApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call greetGetValidateBeforeCall(String whom, final ApiCallback _callback) throws ApiException {
-        return greetGetCall(whom, _callback);
+    private okhttp3.Call greetValidateBeforeCall(String whom, final ApiCallback _callback) throws ApiException {
+        return greetCall(whom, _callback);
 
     }
 
@@ -150,8 +150,8 @@ public class DefaultApi {
         <tr><td> 200 </td><td> Contains the greeting. </td><td>  -  </td></tr>
      </table>
      */
-    public String greetGet(String whom) throws ApiException {
-        ApiResponse<String> localVarResp = greetGetWithHttpInfo(whom);
+    public String greet(String whom) throws ApiException {
+        ApiResponse<String> localVarResp = greetWithHttpInfo(whom);
         return localVarResp.getData();
     }
 
@@ -167,8 +167,8 @@ public class DefaultApi {
         <tr><td> 200 </td><td> Contains the greeting. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<String> greetGetWithHttpInfo(String whom) throws ApiException {
-        okhttp3.Call localVarCall = greetGetValidateBeforeCall(whom, null);
+    public ApiResponse<String> greetWithHttpInfo(String whom) throws ApiException {
+        okhttp3.Call localVarCall = greetValidateBeforeCall(whom, null);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -186,9 +186,9 @@ public class DefaultApi {
         <tr><td> 200 </td><td> Contains the greeting. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call greetGetAsync(String whom, final ApiCallback<String> _callback) throws ApiException {
+    public okhttp3.Call greetAsync(String whom, final ApiCallback<String> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = greetGetValidateBeforeCall(whom, _callback);
+        okhttp3.Call localVarCall = greetValidateBeforeCall(whom, _callback);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

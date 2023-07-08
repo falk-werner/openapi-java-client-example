@@ -20,7 +20,7 @@ paths:
   /greet:
     get:
       description: Greeting service.
-      operationId: greet_get
+      operationId: greet
       parameters:
       - description: Contains the name to greet.
         example: Bob
@@ -39,6 +39,8 @@ paths:
               schema:
                 type: string
           description: Contains the greeting.
-      x-openapi-router-controller: openapi_server.controllers.default_controller
+      tags:
+      - greeter
+      x-openapi-router-controller: openapi_server.controllers.greeter_controller
 components:
   schemas: {}

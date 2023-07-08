@@ -23,6 +23,9 @@ paths:
   /greet:
     get:
       description: Greeting service.
+      operationId: greet
+      tags:
+        - greeter
       parameters:
         - name: whom
           description: Contains the name to greet.

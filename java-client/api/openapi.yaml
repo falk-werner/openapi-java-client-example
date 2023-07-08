@@ -20,6 +20,7 @@ paths:
   /greet:
     get:
       description: Greeting service.
+      operationId: greet
       parameters:
       - description: Contains the name to greet.
         example: Bob
@@ -38,6 +39,8 @@ paths:
               schema:
                 type: string
           description: Contains the greeting.
+      tags:
+      - greeter
       x-accepts: text/plain
 components:
   schemas: {}
