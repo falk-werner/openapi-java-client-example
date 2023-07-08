@@ -50,7 +50,7 @@ to keep things simple. OpenAPI supports API specification in YAML and JSON forma
 The [openapi](openapi) directory of this repository contains an API specification
 the the `greeter` service in both formats.
 
-- [greeter_v1.yml](openapi/greeter_v1.yaml)
+- [greeter_v1.yml](openapi/greeter_v1.yml)
 - [greeter_v1.json](openapi/greeter_v1.json)
 
 Both files are sematically equivalent. In this tutorial, the YAML version is used,
@@ -179,9 +179,109 @@ To open Swagger UI, start your favorite web browser and navigate to [http://loca
 
 ## Java Client
 
+Open API Generator can be used to generate OpenAPI clients based on a provided API specification file. When using the `java` generator some
+extra options can be specfied. A full list of the specific options
+of the `java` generator can be found [here](https://openapi-generator.tech/docs/generators/java).
+
+At least the Java package should be specifed as shown below:
+
+```bash
+> java -jar openapi-generator-cli.jar generate -g java \
+    -i openapi/greeter_v1.yml \
+    -o java-client \
+    -p apiPackage=org.example.greeter
+```
+
+This command generates a Java client for the `greeter service` in the
+[java-cient](java-client) directory. Since they were some files generated which are not in use for this tutorial, I removed those files:
+- .github directory containing a default build workflow
+- pom.xml file used for maven integration
+- Android support in `build.gradle`
+
+The generator also creates some test which can be executed using gradle:
+
+```bash
+> ./gradlew test
+Starting a Gradle Daemon (subsequent builds will be faster)
+
+> Task :test
+
+DefaultApiTest > greetGetTest() SKIPPED
+
+BUILD SUCCESSFUL in 5s
+4 actionable tasks: 3 executed, 1 up-to-date
+```
+
+For some reason, the only test existing is disabled.
+
+### Enable test
+
+To enable the test, wich will run again the previously created
+test server, we have to change [DefaultApiTest.java](/home/user/src/openapi-java-client-example/java-client/src/test/java/org/example/greeter/DefaultApiTest.java).
+
+```Java
+package org.example.greeter;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.example.ApiClient;
+import org.example.ApiException;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * API tests for DefaultApi
+ */
+public class DefaultApiTest {
+
+    private final DefaultApi api = new DefaultApi();
+
+    /**
+     * Greeting service.
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void greetGetTest() throws ApiException {
+        ApiClient client = new ApiClient();
+        HashMap<String,String> variables = new HashMap<>();
+        variables.put("host", "http://localhost:8080");
+        client.setServerVariables(variables);
+
+        DefaultApi greeter = new DefaultApi(client);
+        
+        String whom = "Bob";
+        String response = api.greetGet(whom);
+
+        assertEquals("Hello, Bob!", response);
+    }
+
+}
+```
+
+With this changes applied, the tests can be executed sucessfully:  
+_(Make sure, the test server is still running.)_
+
+```bash
+> ./gradlew test
+
+> Task :test
+
+DefaultApiTest > greetGetTest() PASSED
+
+BUILD SUCCESSFUL in 1s
+4 actionable tasks: 2 executed, 2 up-to-date
+```
 
 
 ## References
 
 - [OpenAPI](https://www.openapis.org/)
 - [OpenAPI Generator](https://openapi-generator.tech/)
+- [Swagger UI](https://swagger.io/tools/swagger-ui/)
