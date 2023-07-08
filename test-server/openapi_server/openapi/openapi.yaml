@@ -1,0 +1,44 @@
+openapi: 3.0.1
+info:
+  contact:
+    name: Falk Werner
+    url: https://github.com/falk-werner/openapi-java-client-example
+  description: This is an example of a simplistic OpenAPI document.
+  license:
+    name: The Unlicense
+    url: https://spdx.org/licenses/Unlicense.html
+  title: Greeter
+  version: 1.0.0
+servers:
+- description: A generic server.
+  url: "{host}/greeter/v1"
+  variables:
+    host:
+      default: http://localhost:8080
+      description: "Protocol, hostname and port of the server."
+paths:
+  /greet:
+    get:
+      description: Greeting service.
+      operationId: greet_get
+      parameters:
+      - description: Contains the name to greet.
+        example: Bob
+        explode: true
+        in: query
+        name: whom
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            text/plain:
+              example: "Hello, Bob!"
+              schema:
+                type: string
+          description: Contains the greeting.
+      x-openapi-router-controller: openapi_server.controllers.default_controller
+components:
+  schemas: {}

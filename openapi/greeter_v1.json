@@ -1,0 +1,60 @@
+{
+    "openapi": "3.0.1",
+
+    "info": {
+        "title": "Greeter",
+        "description": "This is an example of a simplistic OpenAPI document.",
+        "version": "1.0.0",
+        "contact": {
+            "name": "Falk Werner",
+            "url": "https://github.com/falk-werner/openapi-java-client-example"
+        },
+        "license": {
+            "name": "The Unlicense",
+            "url": "https://spdx.org/licenses/Unlicense.html"
+        }
+    },
+
+    "servers": [{
+        "url": "{host}/greeter/v1",
+        "description": "A generic server.",
+        "variables": {
+            "host": {
+                "default": "http//localhost:8080",
+                "description": "Protocol, hostname and port of the server."
+            }
+        }
+
+    }],
+
+    "paths": {
+        "/greet": {
+            "get": {
+                "description": "Greeting service.",
+                "parameters": [{
+                    "name": "whom",
+                    "description": "Contains the name to greet.",
+                    "in": "query",
+                    "required": false,
+                    "schema": {
+                        "type": "string"
+                    },
+                    "example": "Bob"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Contains the greeting.",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "type": "string"
+                                },
+                                "example": "Hello, Bob!"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
