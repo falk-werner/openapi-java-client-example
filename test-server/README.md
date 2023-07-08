@@ -30,12 +30,6 @@ Your OpenAPI definition lives here:
 http://localhost:8080/greeter/v1/openapi.json
 ```
 
-To launch the integration tests, use tox:
-```
-sudo pip install tox
-tox
-```
-
 ## Running with Docker
 
 To run the server on a Docker container, please execute the following from the root directory:
